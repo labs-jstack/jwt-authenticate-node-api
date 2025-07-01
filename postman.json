@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "d0a97a5c-bb53-4c75-a90c-58e059768c79",
+		"name": "Live #006",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42344598"
+	},
+	"item": [
+		{
+			"name": "Public Routes",
+			"item": [
+				{
+					"name": "Sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"johndoe@example.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign-in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@example.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/sign-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "### Public Routes\n\nThese are the public endpoints available for authentication. No token is required to access them.\n\n#### POST `/sign-up`\n\nCreates a new user account.\n\n#### POST `/sign-in`\n\nAuthenticates a user and returns a JWT token."
+		},
+		{
+			"name": "Private Route",
+			"item": [
+				{
+					"name": "Leads",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1YjU5YzUzYy0yNWM2LTQ2MjktOWVmYS1hMDUwZDg0YzI2YzkiLCJpYXQiOjE3NTEyOTM5MDQsImV4cCI6MTc1MTM4MDMwNH0.WgX4fv_vnkjzzZ3cXQfFlDw5QcAsOUexqPiDxDVgccM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/leads",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"leads"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "### Private Route\n\nThis endpoint requires a valid **JWT access token** in the `Authorization` header.\n\n#### GET `/leads`\n\nReturns a list of leads.\n\nThis is a protected route and can only be accessed by authenticated users.\n\n**Headers:**\n\n``` markdown\nAuthorization: Bearer <your-access-token>\n\n ```"
+		}
+	]
+}
